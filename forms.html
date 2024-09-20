@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    form {
+      display: grid;
+      grid-template-columns: 60px 400px;
+    }
+    input[type=number]::-webkit-inner-spin-button {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <form action="forms.html" onsubmit="return checkForm(event)">
+    <label for="name">Имя</label>
+    <input type="text" name="name" id="name" placeholder="Имя" >
+    <label for="group">Группа</label>
+    <input type="text" name="group" id="group" placeholder="Группа">
+    <label for="mail">Почта</label>
+    <input type="email" name="email" id="mail" placeholder="Почта">
+    <label for="pass">Пароль</label>
+    <input type="password" name="pass" id="pass" placeholder="Пароль">
+    <input type="checkbox" name="agree" value="data" id="agree1">
+    <label for="agree1">Согласие на обработку персональных данных</label>
+    <input type="checkbox" name="agree" value="ads" id="agree2">
+    <label for="agree2">Согласие на получение рекламных писем</label>
+    <p>Пол</p>
+    <div>
+      <input type="radio" name="gender" value="m" id="m">
+      <label for="m">М</label>
+      <br>
+      <input type="radio" name="gender" value="w" id="w">
+      <label for="w">Ж</label>
+      <br>
+      <input type="radio" name="gender" value="u" id="u">
+      <label for="u">Н</label>
+    </div>
+    <label for="country">Страна</label>
+    <select name="country" id="country" >
+      <option value="Russia">Россия</option>
+      <option value="China">Китай</option>
+    </select>
+    <input type="submit" id="button" value="Send">
+  </form>
+  <div>
+    type number <input type="number">
+  </div>
+  <div>
+    type text, only number <input id="numberInput" type="text">
+    <p style="color:red" hidden>Проверьте номер телефона</p>
+  </div>
+  <input type="range">
+  <button>Не работает</button>
+
+  <input type="text" name="genre" id="userGenre" list="genreSuggestions" />
+  <datalist id="genreSuggestions">
+    <option>Comedy</option>
+    <option>Horror</option>
+    <option>Drama</option>
+    <option>Thriller</option>
+    <option>Science Fiction</option>
+    <option>Fantasy</option>
+  </datalist>
+  <script>
+    
+    const nameInput = document.getElementById('numberInput')
+    document.forms[0].onsubmit = function(e) {
+      console.log('submit')
+      e.preventDefault()
+    }
+    button.onclick =  function(e) {
+      console.log('click')
+      e.preventDefault()
+      if (nameInput.value.length<12) {
+        nameInput.nextElementSibling.hidden = false
+        return
+      } else {
+        nameInput.nextElementSibling.hidden = true
+      }
+      document.forms[0].submit()
+    }
+    
+
+    function checkForm(event) {
+      return false
+      var nameText = document.getElementById("name").value
+      if (nameText.length < 1) return false
+      return true;
+    }
+
+    nameInput.addEventListener('input',(e)=>{
+      if (e.data == '+' && e.target.value == '+') return 
+      if (isNaN(e.data)) {
+        e.target.value = e.target.value.slice(0, e.target.value.length-1)
+      }
+    })
+    
+  </script>
+</body>
+</html>
